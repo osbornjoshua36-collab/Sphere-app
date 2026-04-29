@@ -2,22 +2,8 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Sphere — everyone you need, in one place</title>
-  <!-- PWA: Sphere -->
-  <meta name="theme-color" content="#1E3245">
-  <meta name="apple-mobile-web-app-capable" content="yes">
-  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
-  <meta name="apple-mobile-web-app-title" content="Sphere">
-  <meta name="mobile-web-app-capable" content="yes">
-  <meta name="application-name" content="Sphere">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
-  <link rel="manifest" href="/manifest.json">
-  <link rel="apple-touch-icon" href="/icons/icon-192.png">
-  <link rel="apple-touch-icon" sizes="152x152" href="/icons/icon-152.png">
-  <link rel="apple-touch-icon" sizes="192x192" href="/icons/icon-192.png">
-  <link rel="apple-touch-icon" sizes="512x512" href="/icons/icon-512.png">
-  <link rel="icon" type="image/png" sizes="192x192" href="/icons/icon-192.png">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,400;0,9..144,500;1,9..144,300;1,9..144,400&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
 <style>
@@ -706,7 +692,151 @@ background:transparent;border:1.5px solid rgba(255,255,255,.45);border-radius:9p
 /* Task detection cards in My Circle */
 .task-detect-card{background:var(--wh);border:1.5px solid var(--terra);border-radius:13px;margin:6px 36px 6px 36px;padding:12px 14px;box-shadow:0 2px 12px rgba(232,148,90,.18);animation:tdcSlide .25s ease;transition:opacity .4s;}
 @keyframes tdcSlide{from{opacity:0;transform:translateY(8px);}to{opacity:1;transform:translateY(0);}}
+
+/* ── DARK MODE ── */
+body.dark-mode {
+  --navy:#0D1B2A; --navy-lt:#1A2E40; --navy-xs:#243D54;
+  --cream:#121C26; --cream-mid:#1A2535; --cream-lt:#1F2D3D; --wh:#1A2535;
+  --txt:#E8F0F8; --muted:#8DAFC8; --hint:#5A7A96;
+  --bdr:rgba(255,255,255,.08); --bdr-md:rgba(255,255,255,.14); --bdr-hi:rgba(255,255,255,.22);
+}
+body.dark-mode .hdr{background:#0A1520;}
+body.dark-mode .sidebar{background:#111D2B;border-color:rgba(255,255,255,.07);}
+body.dark-mode .tl-block{filter:brightness(.9);}
+body.dark-mode .modal-box{background:#1A2535;}
+body.dark-mode input,body.dark-mode textarea,body.dark-mode select{background:#1F2D3D;color:var(--txt);border-color:rgba(255,255,255,.15);}
+body.dark-mode .task-drawer,body.dark-mode .focus-drawer,body.dark-mode .pr-drawer{background:#1A2535;}
+body.dark-mode .now-sub{color:rgba(255,255,255,.5);}
+
+/* ── ONBOARDING ── */
+.onboarding-overlay{position:fixed;inset:0;z-index:1000;background:var(--navy);display:flex;flex-direction:column;align-items:center;justify-content:center;padding:32px 24px;animation:fadeIn .3s ease;}
+.ob-step{display:none;flex-direction:column;align-items:center;text-align:center;max-width:340px;width:100%;}
+.ob-step.active{display:flex;}
+.ob-icon{font-size:64px;margin-bottom:20px;animation:popIn .4s cubic-bezier(.34,1.56,.64,1);}
+@keyframes popIn{from{transform:scale(0);opacity:0;}to{transform:scale(1);opacity:1;}}
+.ob-title{font-family:'Fraunces',serif;font-size:26px;font-weight:400;color:#F0F6FF;margin-bottom:12px;line-height:1.2;}
+.ob-body{font-size:14px;color:rgba(255,255,255,.6);line-height:1.7;margin-bottom:28px;}
+.ob-btn{background:var(--terra);color:#fff;border:none;border-radius:14px;padding:14px 32px;font-size:15px;font-weight:600;cursor:pointer;font-family:'DM Sans',sans-serif;width:100%;transition:all .15s;}
+.ob-btn:hover{background:var(--terra-d);}
+.ob-btn-ghost{background:transparent;color:rgba(255,255,255,.5);border:none;font-size:13px;cursor:pointer;font-family:'DM Sans',sans-serif;margin-top:12px;padding:8px;}
+.ob-dots{display:flex;gap:8px;margin-bottom:32px;}
+.ob-dot{width:8px;height:8px;border-radius:50%;background:rgba(255,255,255,.2);transition:all .2s;}
+.ob-dot.active{background:var(--terra);width:20px;border-radius:4px;}
+.ob-input{width:100%;padding:14px 16px;border:1.5px solid rgba(255,255,255,.2);border-radius:12px;background:rgba(255,255,255,.08);color:#fff;font-size:15px;font-family:'DM Sans',sans-serif;outline:none;margin-bottom:16px;text-align:center;}
+.ob-input::placeholder{color:rgba(255,255,255,.3);}
+.ob-input:focus{border-color:var(--terra);}
+.ob-perm-row{display:flex;align-items:center;gap:12px;padding:12px 14px;background:rgba(255,255,255,.06);border-radius:12px;margin-bottom:8px;cursor:pointer;transition:all .15s;width:100%;}
+.ob-perm-row:hover{background:rgba(255,255,255,.1);}
+.ob-perm-icon{font-size:22px;flex-shrink:0;}
+.ob-perm-label{flex:1;text-align:left;}
+.ob-perm-name{font-size:13px;font-weight:600;color:#F0F6FF;}
+.ob-perm-sub{font-size:11px;color:rgba(255,255,255,.45);margin-top:2px;}
+.ob-perm-status{font-size:11px;font-weight:600;color:var(--sage);}
+
+/* ── SETTINGS ── */
+.settings-overlay{position:fixed;inset:0;z-index:900;background:rgba(10,20,35,.6);display:flex;align-items:flex-end;justify-content:center;}
+.settings-drawer{background:var(--cream);border-radius:20px 20px 0 0;width:100%;max-width:520px;max-height:90vh;overflow-y:auto;padding:20px 0 40px;animation:slideUp .25s ease;}
+.settings-hdr{padding:0 22px 16px;border-bottom:1px solid var(--bdr);display:flex;align-items:center;justify-content:space-between;}
+.settings-title{font-family:'Fraunces',serif;font-size:19px;color:var(--txt);}
+.settings-section{padding:16px 22px 0;}
+.settings-section-title{font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:.08em;color:var(--hint);margin-bottom:10px;}
+.settings-row{display:flex;align-items:center;gap:12px;padding:11px 0;border-bottom:1px solid var(--bdr);}
+.settings-row:last-child{border-bottom:none;}
+.settings-icon{width:34px;height:34px;border-radius:9px;display:flex;align-items:center;justify-content:center;font-size:17px;flex-shrink:0;}
+.settings-label{flex:1;}
+.settings-name{font-size:13px;font-weight:500;color:var(--txt);}
+.settings-sub{font-size:10px;color:var(--hint);margin-top:2px;}
+.settings-toggle{width:44px;height:26px;border-radius:13px;background:var(--bdr-md);border:none;cursor:pointer;position:relative;transition:background .2s;flex-shrink:0;}
+.settings-toggle.on{background:var(--sage);}
+.settings-toggle::after{content:'';position:absolute;top:3px;left:3px;width:20px;height:20px;border-radius:50%;background:#fff;transition:transform .2s;box-shadow:0 1px 3px rgba(0,0,0,.2);}
+.settings-toggle.on::after{transform:translateX(18px);}
+.settings-avatar{width:60px;height:60px;border-radius:50%;background:var(--navy);color:#fff;display:flex;align-items:center;justify-content:center;font-size:22px;font-weight:600;font-family:'Fraunces',serif;flex-shrink:0;}
+.settings-name-input{border:1.5px solid var(--bdr-md);border-radius:9px;padding:8px 12px;font-size:13px;font-family:'DM Sans',sans-serif;color:var(--txt);background:var(--wh);outline:none;flex:1;}
+.settings-name-input:focus{border-color:var(--navy);}
+
+/* ── MOBILE NAV ── */
+.mobile-nav{display:none;position:fixed;bottom:0;left:0;right:0;height:60px;background:var(--navy);border-top:1px solid rgba(255,255,255,.1);z-index:600;justify-content:space-around;align-items:center;padding-bottom:env(safe-area-inset-bottom);}
+.mobile-nav-btn{display:flex;flex-direction:column;align-items:center;gap:3px;background:transparent;border:none;color:rgba(255,255,255,.45);font-size:9px;font-family:'DM Sans',sans-serif;font-weight:500;cursor:pointer;padding:6px 10px;border-radius:10px;transition:all .15s;min-width:56px;}
+.mobile-nav-btn.active{color:#fff;background:rgba(255,255,255,.1);}
+.mobile-nav-btn .mnav-icon{font-size:20px;line-height:1;}
+
+/* ── RESPONSIVE ── */
+@media(max-width:600px){
+  :root{--sb-w:0px;}
+  .sidebar{display:none!important;}
+  .body{flex-direction:column;}
+  .main{width:100%;padding-bottom:68px;}
+  .hdr{padding:0 12px;}
+  .hdr-center{display:none;}
+  .sec-hdr{flex-direction:column;align-items:flex-start;gap:10px;padding:12px 14px;}
+  .sec-hdr-actions{flex-wrap:wrap;gap:6px;width:100%;}
+  .sec-hdr-actions button{flex:1;min-width:0;font-size:11px;padding:7px 8px;}
+  .sec-hdr-title{font-size:16px;}
+  .content-pad{padding:12px 14px;}
+  .tl-legend{display:none;}
+  .sched-header{padding:10px 14px 8px;flex-wrap:wrap;gap:8px;}
+  .sched-header-center{order:3;width:100%;justify-content:center;}
+  .msg-sidebar{display:none!important;}
+  .msg-main{width:100%!important;}
+  .task-drawer,.focus-drawer,.pr-drawer{max-width:100%!important;}
+  .now-actions{flex-wrap:wrap;}
+  .now-btn{flex:1;text-align:center;}
+  .mobile-nav{display:flex!important;}
+}
+
+/* ── EMPTY STATES ── */
+.empty-state{display:flex;flex-direction:column;align-items:center;justify-content:center;padding:48px 24px;text-align:center;gap:12px;}
+.empty-state-icon{font-size:48px;opacity:.4;}
+.empty-state-title{font-family:'Fraunces',serif;font-size:17px;color:var(--muted);}
+.empty-state-sub{font-size:12px;color:var(--hint);line-height:1.6;max-width:240px;}
+.empty-state-btn{background:var(--navy);color:#fff;border:none;border-radius:10px;padding:10px 20px;font-size:12px;font-weight:600;cursor:pointer;font-family:'DM Sans',sans-serif;margin-top:4px;}
+
+/* ── FIREBASE AUTH ── */
+.auth-overlay{position:fixed;inset:0;z-index:2000;background:var(--navy);display:flex;align-items:center;justify-content:center;padding:24px;}
+.auth-card{background:var(--wh);border-radius:20px;width:100%;max-width:400px;padding:36px 32px;box-shadow:0 20px 60px rgba(0,0,0,.25);}
+.auth-logo{display:flex;align-items:center;gap:12px;margin-bottom:28px;}
+.auth-logo-ring{width:38px;height:38px;border-radius:50%;border:2.5px solid var(--terra);display:flex;align-items:center;justify-content:center;}
+.auth-logo-dot{width:10px;height:10px;border-radius:50%;background:var(--terra);}
+.auth-logo-text{font-family:'Fraunces',serif;font-size:22px;color:var(--navy);}
+.auth-title{font-family:'Fraunces',serif;font-size:24px;color:var(--navy);margin-bottom:6px;}
+.auth-sub{font-size:12px;color:var(--hint);margin-bottom:24px;line-height:1.6;}
+.auth-input{width:100%;border:1.5px solid var(--bdr-md);border-radius:10px;padding:11px 14px;font-size:14px;font-family:'DM Sans',sans-serif;color:var(--txt);background:var(--cream-lt);outline:none;margin-bottom:12px;transition:border-color .15s;}
+.auth-input:focus{border-color:var(--navy);background:var(--wh);}
+.auth-btn{width:100%;background:var(--navy);color:#fff;border:none;border-radius:10px;padding:13px;font-size:14px;font-weight:600;cursor:pointer;font-family:'DM Sans',sans-serif;transition:all .15s;margin-bottom:10px;}
+.auth-btn:hover{background:var(--terra);}
+.auth-btn-secondary{width:100%;background:transparent;color:var(--muted);border:1.5px solid var(--bdr-md);border-radius:10px;padding:11px;font-size:13px;cursor:pointer;font-family:'DM Sans',sans-serif;transition:all .15s;}
+.auth-btn-secondary:hover{border-color:var(--navy);color:var(--navy);}
+.auth-divider{display:flex;align-items:center;gap:10px;margin:14px 0;color:var(--hint);font-size:11px;}
+.auth-divider::before,.auth-divider::after{content:'';flex:1;height:1px;background:var(--bdr);}
+.auth-error{background:var(--rose-l);border:1px solid var(--rose);border-radius:8px;padding:9px 12px;font-size:12px;color:var(--rose-d);margin-bottom:12px;display:none;}
+.auth-switch{text-align:center;font-size:12px;color:var(--hint);margin-top:16px;}
+.auth-switch a{color:var(--navy);font-weight:600;cursor:pointer;text-decoration:none;}
+.auth-loading{display:flex;align-items:center;justify-content:center;gap:10px;padding:20px;color:var(--hint);font-size:13px;}
+.auth-spinner{width:20px;height:20px;border:2px solid var(--bdr-md);border-top-color:var(--navy);border-radius:50%;animation:spin .7s linear infinite;}
+@keyframes spin{to{transform:rotate(360deg);}}
+.auth-google-btn{width:100%;background:var(--wh);color:var(--txt);border:1.5px solid var(--bdr-md);border-radius:10px;padding:11px;font-size:13px;font-weight:500;cursor:pointer;font-family:'DM Sans',sans-serif;display:flex;align-items:center;justify-content:center;gap:10px;transition:all .15s;margin-bottom:10px;}
+.auth-google-btn:hover{border-color:var(--navy);background:var(--cream-lt);}
+.auth-sync-banner{position:fixed;bottom:70px;left:50%;transform:translateX(-50%);z-index:1000;background:var(--sage);color:#fff;border-radius:10px;padding:9px 18px;font-size:12px;font-weight:600;display:none;align-items:center;gap:8px;box-shadow:0 4px 16px rgba(91,170,126,.4);}
+
+/* ── FEEDBACK BUTTON ── */
+.feedback-fab{position:fixed;bottom:20px;right:20px;z-index:580;background:var(--terra);color:#fff;border:none;border-radius:50px;padding:10px 16px;font-size:12px;font-weight:600;cursor:pointer;font-family:'DM Sans',sans-serif;box-shadow:0 4px 16px rgba(232,148,90,.4);display:flex;align-items:center;gap:7px;transition:all .2s;}
+.feedback-fab:hover{background:var(--terra-d);transform:translateY(-2px);}
+.feedback-overlay{position:fixed;inset:0;z-index:900;background:rgba(10,20,35,.6);display:flex;align-items:flex-end;justify-content:center;}
+.feedback-drawer{background:var(--cream);border-radius:20px 20px 0 0;width:100%;max-width:480px;padding:22px 22px 40px;animation:slideUp .22s ease;}
+.feedback-stars{display:flex;gap:8px;margin:12px 0;}
+.feedback-star{font-size:28px;cursor:pointer;opacity:.3;transition:all .15s;background:none;border:none;padding:2px;}
+.feedback-star.active{opacity:1;}
+.feedback-textarea{width:100%;border:1.5px solid var(--bdr-md);border-radius:10px;padding:11px 13px;font-size:13px;font-family:'DM Sans',sans-serif;color:var(--txt);background:var(--wh);outline:none;resize:none;min-height:100px;line-height:1.6;}
+.feedback-textarea:focus{border-color:var(--navy);}
+.feedback-tag{display:inline-flex;align-items:center;padding:5px 12px;border-radius:20px;border:1.5px solid var(--bdr-md);background:var(--wh);font-size:11px;color:var(--muted);cursor:pointer;transition:all .14s;font-family:'DM Sans',sans-serif;}
+.feedback-tag.active{border-color:var(--terra);background:var(--terra-l);color:var(--terra-d);font-weight:600;}
 </style>
+  <!-- Firebase SDK -->
+  <script src="https://www.gstatic.com/firebasejs/10.12.0/firebase-app-compat.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/10.12.0/firebase-auth-compat.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/10.12.0/firebase-firestore-compat.js"></script>
+  <!-- EmailJS for feedback -->
+  <script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
 </head>
 <body>
 <div class="app">
@@ -723,7 +853,8 @@ background:transparent;border:1.5px solid rgba(255,255,255,.45);border-radius:9p
     </div>
     <div class="hdr-right">
       <button class="hdr-btn notif-btn" onclick="toast('3 new notifications')">🔔 inbox<div class="notif-pip"></div></button>
-      <button class="hdr-btn" onclick="lockApp()">🔒 lock</button>
+      <button class="hdr-btn" onclick="openSettings()" title="Settings">⚙️</button>
+      <button class="hdr-btn" onclick="signOut()">🔒 sign out</button>
     </div>
   </div>
 
@@ -732,8 +863,7 @@ background:transparent;border:1.5px solid rgba(255,255,255,.45);border-radius:9p
     <!-- SIDEBAR -->
     <div class="sidebar">
       <div class="sb-greeting">
-        <div class="sb-greet-name" id="greetName">good morning ☀️</div>
-        <div class="sb-greet-sub" id="greetSub">your brain works differently. so does Sphere.</div>
+        <div class="sb-greet-name" id="greetName">Good morning ☀️</div>
         <div class="energy-row">
           <span class="energy-lbl">energy</span>
           <div class="energy-dots" id="energyDots">
@@ -1398,11 +1528,11 @@ background:transparent;border:1.5px solid rgba(255,255,255,.45);border-radius:9p
 
 <script>
 // ── INIT ──
-const now = new Date();
+var now = new Date();
 document.getElementById('hdrDate').textContent = now.toLocaleDateString('en-US',{weekday:'short',month:'short',day:'numeric'});
 document.getElementById('myFP').textContent = '1E32·4500·B8D4·' + (Math.floor(Math.random()*9000)+1000);
-const hr = now.getHours();
-const greetText = hr<12?'good morning ☀️':hr<17?'good afternoon 🌤️':'good evening 🌙';
+var hr = now.getHours();
+var greetText = hr<12?'Good morning ☀️':hr<17?'Good afternoon 🌤️':'Good evening 🌙';
 document.getElementById('greetName').textContent = greetText;
 
 // ── ENERGY ──
@@ -1410,7 +1540,7 @@ function setE(n){ document.querySelectorAll('.edot').forEach((d,i)=>d.classList.
 
 // ── NAVIGATION ──
 // All expandable sub-menus keyed by their sub-id → parent nav key
-const SUB_MENUS = { 'goals-sub': 'goals', 'circle-sub': 'circle' };
+var SUB_MENUS = { 'goals-sub': 'goals', 'circle-sub': 'circle' };
 
 function closeAllSubs(exceptId){
   Object.keys(SUB_MENUS).forEach(subId => {
@@ -2142,14 +2272,14 @@ function setMood(btn){ document.querySelectorAll('.mbtn').forEach(b=>b.classList
 // ══════════════════════════════════════════
 // MY SCHEDULE — VISUAL TIMELINE ENGINE
 // ══════════════════════════════════════════
-const PX_PER_MIN = 1.6;   // pixels per minute — controls block height
-const DAY_START  = 6;     // 6 AM
-const DAY_END    = 23;    // 11 PM
-const TOTAL_MINS = (DAY_END - DAY_START) * 60;
-const TOTAL_PX   = TOTAL_MINS * PX_PER_MIN;
+var PX_PER_MIN = 1.6;   // pixels per minute — controls block height
+var DAY_START  = 6;     // 6 AM
+var DAY_END    = 23;    // 11 PM
+var TOTAL_MINS = (DAY_END - DAY_START) * 60;
+var TOTAL_PX   = TOTAL_MINS * PX_PER_MIN;
 
 // Colour palette per category
-const CAT_COLORS = {
+var CAT_COLORS = {
   'work':       { bg:'#EDE8FF', border:'#7A6AAA', text:'#3D2E70', chip:'#C8BEEE', icon:'💼' },
   'self-care':  { bg:'#FFF0E6', border:'#E8945A', text:'#8B3E10', chip:'#F5C8A8', icon:'🌿' },
   'home':       { bg:'#E6F7EE', border:'#5BAA7E', text:'#1D5C38', chip:'#A8DCC0', icon:'🏠' },
@@ -2161,8 +2291,8 @@ const CAT_COLORS = {
 };
 
 // Task data store — each task has: id, title, startMin (mins from midnight), durMin, cat, done, recurring, recurType, missed
-let schedDay = new Date(); // current viewed day
-let schedTasks = [
+var schedDay = new Date(); // current viewed day
+var schedTasks = [
   { id:1,  title:'Morning meds + water',   startMin:8*60,       durMin:15,  cat:'routine',   done:true,  recurring:true,  recurType:'daily',       missed:false, taskType:'recurring',  deadline:null },
   { id:2,  title:'Write proposal intro',   startMin:9*60,       durMin:60,  cat:'work',      done:false, recurring:false, recurType:'',            missed:false, taskType:'timebound',  deadline:'Apr 28' },
   { id:3,  title:'Team standup call',      startMin:11*60,      durMin:30,  cat:'work',      done:false, recurring:true,  recurType:'weekdays',    missed:false, taskType:'recurring',  deadline:null },
@@ -2175,7 +2305,7 @@ let schedTasks = [
   { id:10, title:'Evening medication',     startMin:20*60,      durMin:10,  cat:'routine',   done:false, recurring:true,  recurType:'daily',       missed:false, taskType:'recurring',  deadline:null },
   { id:11, title:'Wind-down / no screens', startMin:21*60,      durMin:60,  cat:'self-care', done:false, recurring:true,  recurType:'daily',       missed:false, taskType:'recurring',  deadline:null },
 ];
-let nextTaskId = 20;
+var nextTaskId = 20;
 
 // ── RENDER TIMELINE ──
 function renderTimeline(scrollToNow){
@@ -2858,6 +2988,7 @@ function showPriorityAlert(task){
 
 // ── VIEW SWITCHING ──
 var _timelineOpened = false;
+var currentSchedView = 'timeline';
 function setSchedView(view, btn){
   currentSchedView = view;
   document.querySelectorAll('.svt-btn').forEach(function(b){ b.classList.remove('active'); });
@@ -3597,7 +3728,7 @@ function initSchedule(){
 // ══════════════════════════════════════════
 
 // Smart prompts per goal type — asked when a goal has no subtasks yet
-const GOAL_PROMPTS = {
+var GOAL_PROMPTS = {
   'read 12 books this year':          'Break this into individual books. Want to add each book as a task so you can check them off one by one?',
   'complete certification course':    'Each module can be a subtask. Want to break it into the 10 modules so you can check them off as you go?',
   'build $5,000 emergency fund':      'Want to break this into monthly savings milestones? e.g. $500 saved by end of each month.',
@@ -3608,7 +3739,7 @@ const GOAL_PROMPTS = {
 };
 
 // Goals data store
-const goalsData = [
+var goalsData = [
   {
     id:'g1', cat:'health', icon:'\ud83d\udc8a', iconBg:'var(--sage-l)', color:'var(--sage)',
     title:'Take medication daily', pct:85,
@@ -3716,9 +3847,9 @@ const goalsData = [
   },
 ];
 
-let activeGoalCat = 'all';
-let nextGoalId = 100;
-let nextSubId  = 1000;
+var activeGoalCat = 'all';
+var nextGoalId = 100;
+var nextSubId  = 1000;
 
 function computePct(goal){
   if(!goal.subtasks || goal.subtasks.length === 0) return goal.pct;
@@ -4458,26 +4589,815 @@ function setGoalTab(cat, el){
   renderGoals();
 }
 
+// ══════════════════════════════════════════
+// FEATURE 1: localStorage PERSISTENCE
+// ══════════════════════════════════════════
+
+var STORAGE_KEY = 'sphere_data_v4';
+var STORAGE_VERSION = 3;
+var _saveTimer = null;
+
+function saveToStorage(){
+  try {
+    var data = {
+      version:          STORAGE_VERSION,
+      schedTasks:       schedTasks,
+      goalsData:        goalsData,
+      prioritySettings: prioritySettings,
+      userProfile:      userProfile,
+      appSettings:      appSettings,
+      savedAt:          Date.now()
+    };
+    localStorage.setItem(STORAGE_KEY, JSON.stringify(data));
+    var lbl = document.getElementById('lastSavedLabel');
+    if(lbl) lbl.textContent = 'Last saved: just now';
+  } catch(e){ console.warn('Save failed:', e); }
+}
+
+function loadFromStorage(){
+  try {
+    // Clear old storage keys from previous sessions
+    ['sphere_data_v1','sphere_data_v2','sphere_data_v3'].forEach(function(k){
+      localStorage.removeItem(k);
+    });
+    var raw = localStorage.getItem(STORAGE_KEY);
+    if(!raw) return false;
+    var data = JSON.parse(raw);
+    // Discard saves from older app versions
+    if(!data.version || data.version < STORAGE_VERSION){
+      localStorage.removeItem(STORAGE_KEY);
+      return false;
+    }
+    // Only restore if meaningful content exists
+    if(data.schedTasks && data.schedTasks.length > 1)  schedTasks       = data.schedTasks;
+    if(data.goalsData  && data.goalsData.length  > 0)  goalsData        = data.goalsData;
+    if(data.prioritySettings) prioritySettings = data.prioritySettings;
+    if(data.userProfile)      userProfile      = data.userProfile;
+    if(data.appSettings)      appSettings      = data.appSettings;
+    return true;
+  } catch(e){ console.warn('Load failed:', e); localStorage.removeItem(STORAGE_KEY); return false; }
+}
+
+// Auto-save whenever data changes — debounced 800ms
+function scheduleSave(){
+  clearTimeout(_saveTimer);
+  _saveTimer = setTimeout(saveToStorage, 800);
+}
+
+// Patch all mutation points to trigger auto-save
+var _origRenderTimeline = null; // patched after declaration
+
+// ══════════════════════════════════════════
+// FEATURE 2: USER PROFILE
+// ══════════════════════════════════════════
+
+var userProfile = {
+  name:      '',
+  initials:  '?',
+  onboarded: false
+};
+
+var appSettings = {
+  darkMode:      false,
+  notifPriority: true,
+  notifReview:   true,
+  notifCheckin:  false,
+  notifGranted:  false
+};
+
+function applyProfile(){
+  var name = userProfile.name || '';
+  var hr   = new Date().getHours();
+  var greeting = hr < 12 ? 'Good morning' : hr < 17 ? 'Good afternoon' : 'Good evening';
+  var icon     = hr < 12 ? '☀️' : hr < 17 ? '🌤️' : '🌙';
+  var greetEl  = document.getElementById('greetName');
+  if(greetEl) greetEl.textContent = name ? greeting + ', ' + name + ' ' + icon : greeting + ' ' + icon;
+  var initials = name ? name.slice(0,2).toUpperCase() : '?';
+  var avatarEl = document.getElementById('settingsAvatar');
+  if(avatarEl) avatarEl.textContent = initials;
+  var nameInp = document.getElementById('settingsNameInput');
+  if(nameInp) nameInp.value = userProfile.name || '';
+}
+
+function saveProfileSettings(){
+  var inp = document.getElementById('settingsNameInput');
+  if(!inp) return;
+  var name = inp.value.trim();
+  if(!name){ toast('Please enter your name'); return; }
+  userProfile.name = name;
+  userProfile.initials = name.slice(0,2).toUpperCase();
+  applyProfile();
+  scheduleSave();
+  haptic();
+  toast('✓ Profile saved');
+}
+
+function saveReviewTimeSetting(){
+  var inp = document.getElementById('settingsReviewTime');
+  if(!inp) return;
+  prioritySettings.reviewTime = inp.value;
+  var rt = schedTasks.find(function(t){ return t._isReviewTask; });
+  if(rt) rt.startMin = timeStrToMin(inp.value);
+  scheduleSave();
+  if(typeof renderTimeline === 'function') renderTimeline();
+}
+
+// ══════════════════════════════════════════
+// FEATURE 3: PUSH NOTIFICATIONS
+// ══════════════════════════════════════════
+
+function requestNotifPermission(){
+  if(!('Notification' in window)){
+    toast('Notifications not supported on this browser');
+    return;
+  }
+  Notification.requestPermission().then(function(result){
+    appSettings.notifGranted = result === 'granted';
+    scheduleSave();
+    var statusEl = document.getElementById('obNotifStatus');
+    if(statusEl) statusEl.textContent = result === 'granted' ? '✓ enabled' : 'not allowed';
+    var permBtn = document.getElementById('notifPermBtn');
+    var permStatus = document.getElementById('notifPermStatus');
+    if(result === 'granted'){
+      if(permBtn) permBtn.textContent = '✓ Notifications enabled';
+      if(permStatus) permStatus.textContent = 'Reminders will appear on your device';
+      toast('🔔 Notifications enabled!');
+      scheduleNotifications();
+    } else {
+      toast('Notifications blocked — enable in device settings');
+    }
+  });
+}
+
+function sendNotification(title, body, tag){
+  if(!appSettings.notifGranted || Notification.permission !== 'granted') return;
+  try {
+    new Notification(title, {
+      body:  body,
+      icon:  '/icons/icon-192.png',
+      badge: '/icons/icon-96.png',
+      tag:   tag || 'sphere',
+      vibrate: [100, 50, 100]
+    });
+  } catch(e){}
+}
+
+function scheduleNotifications(){
+  if(!appSettings.notifGranted) return;
+  var now = new Date();
+  var nowMin = now.getHours()*60 + now.getMinutes();
+
+  // Check for upcoming priority tasks in the next 10 minutes
+  if(appSettings.notifPriority){
+    var priorityIds = prioritySettings.topThree.map(function(p){ return p.id; });
+    schedTasks.forEach(function(t){
+      if(priorityIds.indexOf(t.id) >= 0 && !t.done){
+        var minsUntil = t.startMin - nowMin;
+        if(minsUntil > 0 && minsUntil <= 10){
+          setTimeout(function(){
+            sendNotification(
+              '🎯 Priority task starting soon',
+              t.title + ' starts in ' + minsUntil + ' minute' + (minsUntil !== 1 ? 's' : ''),
+              'priority-' + t.id
+            );
+          }, Math.max(0, (minsUntil - 1) * 60000));
+        }
+      }
+    });
+  }
+
+  // Review time reminder
+  if(appSettings.notifReview){
+    var reviewMin = timeStrToMin(prioritySettings.reviewTime || '21:00');
+    var minsUntilReview = reviewMin - nowMin;
+    if(minsUntilReview > 0 && minsUntilReview < 60){
+      setTimeout(function(){
+        var today = new Date().toISOString().slice(0,10);
+        if(prioritySettings.lastSetDate !== today){
+          sendNotification('📋 Time to set your priorities', 'Open Sphere to choose your #1 thing for tomorrow', 'review');
+        }
+      }, minsUntilReview * 60000);
+    }
+  }
+}
+
+// Run notification scheduler every 5 minutes
+setInterval(function(){
+  if(appSettings.notifGranted) scheduleNotifications();
+}, 5 * 60 * 1000);
+
+// Haptic feedback helper
+function haptic(pattern){
+  if('vibrate' in navigator){
+    navigator.vibrate(pattern || 10);
+  }
+}
+
+// ══════════════════════════════════════════
+// FEATURE 4: ONBOARDING
+// ══════════════════════════════════════════
+
+var _obStep = 0;
+var _obTotal = 6;
+
+function showOnboarding(){
+  var overlay = document.getElementById('onboardingOverlay');
+  if(!overlay) return;
+  overlay.style.display = 'flex';
+  buildObDots();
+  goToObStep(0);
+}
+
+function buildObDots(){
+  var dotsEl = document.getElementById('obDots');
+  if(!dotsEl) return;
+  dotsEl.innerHTML = '';
+  for(var i = 0; i < _obTotal; i++){
+    var dot = document.createElement('div');
+    dot.className = 'ob-dot' + (i === 0 ? ' active' : '');
+    dot.id = 'ob-dot-' + i;
+    dotsEl.appendChild(dot);
+  }
+}
+
+function goToObStep(n){
+  document.querySelectorAll('.ob-step').forEach(function(s){ s.classList.remove('active'); });
+  var step = document.getElementById('ob-step-' + n);
+  if(step) step.classList.add('active');
+  document.querySelectorAll('.ob-dot').forEach(function(d,i){ d.classList.toggle('active', i === n); });
+  _obStep = n;
+
+  // Auto-focus name input
+  if(n === 1){
+    setTimeout(function(){
+      var inp = document.getElementById('obNameInput');
+      if(inp) inp.focus();
+    }, 300);
+  }
+
+  // Update notif permission status
+  if(n === 4){
+    var status = document.getElementById('obNotifStatus');
+    if(status){
+      if(Notification.permission === 'granted') status.textContent = '✓ enabled';
+      else if(Notification.permission === 'denied') status.textContent = 'blocked';
+      else status.textContent = 'tap to enable';
+    }
+  }
+}
+
+function obNext(){
+  if(_obStep < _obTotal - 1) goToObStep(_obStep + 1);
+}
+
+function obSaveName(){
+  var inp = document.getElementById('obNameInput');
+  var name = inp ? inp.value.trim() : '';
+  if(!name){ inp && inp.focus(); toast('What should we call you?'); return; }
+  userProfile.name = name;
+  userProfile.initials = name.slice(0,2).toUpperCase();
+  applyProfile();
+  haptic();
+  obNext();
+}
+
+function obSkip(){
+  obFinish();
+}
+
+function obFinish(){
+  userProfile.onboarded = true;
+  var overlay = document.getElementById('onboardingOverlay');
+  if(overlay){
+    overlay.style.opacity = '0';
+    overlay.style.transition = 'opacity .3s';
+    setTimeout(function(){ overlay.style.display = 'none'; }, 300);
+  }
+  scheduleSave();
+  toast('Welcome to Sphere! 🌐');
+  // Schedule notifications if granted during onboarding
+  if(appSettings.notifGranted) scheduleNotifications();
+}
+
+// ══════════════════════════════════════════
+// FEATURE 5: DARK MODE
+// ══════════════════════════════════════════
+
+function toggleDarkMode(){
+  appSettings.darkMode = !appSettings.darkMode;
+  applyDarkMode();
+  scheduleSave();
+  haptic();
+}
+
+function applyDarkMode(){
+  document.body.classList.toggle('dark-mode', appSettings.darkMode);
+  var toggle = document.getElementById('darkModeToggle');
+  if(toggle) toggle.classList.toggle('on', appSettings.darkMode);
+}
+
+// ══════════════════════════════════════════
+// FEATURE 6: SETTINGS
+// ══════════════════════════════════════════
+
+function openSettings(){
+  var overlay = document.getElementById('settingsOverlay');
+  if(!overlay) return;
+  // Sync current values
+  var nameInp = document.getElementById('settingsNameInput');
+  if(nameInp) nameInp.value = userProfile.name || '';
+  var avatar = document.getElementById('settingsAvatar');
+  if(avatar) avatar.textContent = userProfile.initials || '?';
+  var dm = document.getElementById('darkModeToggle');
+  if(dm) dm.classList.toggle('on', appSettings.darkMode);
+  var rt = document.getElementById('settingsReviewTime');
+  if(rt) rt.value = prioritySettings.reviewTime || '21:00';
+  // Notif permission status
+  var permBtn  = document.getElementById('notifPermBtn');
+  var permStatus = document.getElementById('notifPermStatus');
+  if(Notification.permission === 'granted'){
+    if(permBtn) permBtn.textContent = '✓ Notifications enabled';
+    if(permStatus) permStatus.textContent = 'Reminders will appear on your device';
+  }
+  overlay.style.display = 'flex';
+  haptic();
+}
+
+function closeSettings(){
+  var overlay = document.getElementById('settingsOverlay');
+  if(overlay) overlay.style.display = 'none';
+}
+
+function toggleSettingToggle(btn, key){
+  btn.classList.toggle('on');
+  appSettings[key] = btn.classList.contains('on');
+  scheduleSave();
+  haptic(5);
+}
+
+function confirmResetData(){
+  if(!confirm('Reset all data? This cannot be undone.')) return;
+  localStorage.removeItem(STORAGE_KEY);
+  userProfile = { name:'', initials:'?', onboarded:false };
+  appSettings = { darkMode:false, notifPriority:true, notifReview:true, notifCheckin:false, notifGranted:false };
+  closeSettings();
+  applyDarkMode();
+  location.reload();
+}
+
+// ══════════════════════════════════════════
+// MOBILE NAV
+// ══════════════════════════════════════════
+
+function mobileNavTo(view){
+  navTo(view);
+  document.querySelectorAll('.mobile-nav-btn').forEach(function(btn){
+    btn.classList.toggle('active', btn.id === 'mnav-' + view);
+  });
+  haptic(8);
+}
+
+// ══════════════════════════════════════════
+// APP BOOT
+// ══════════════════════════════════════════
+
+function bootApp(){
+  // 1. Load saved data
+  var hasSavedData = loadFromStorage();
+
+  // 2. Apply appearance settings
+  applyDarkMode();
+
+  // 3. Apply profile
+  applyProfile();
+
+  // 4. Patch renderTimeline and save-triggering functions to auto-save
+  var _rt = renderTimeline;
+  renderTimeline = function(){
+    _rt.apply(this, arguments);
+    scheduleSave();
+  };
+
+  // 5. Show onboarding for new users
+  if(!userProfile.onboarded){
+    showOnboarding();
+  }
+
+  // 6. Check notification permission state
+  if(Notification.permission === 'granted'){
+    appSettings.notifGranted = true;
+    scheduleNotifications();
+  }
+
+  // 7. Update review time from settings
+  var rtInp = document.getElementById('settingsReviewTime');
+  if(rtInp) rtInp.value = prioritySettings.reviewTime || '21:00';
+}
+
 // Initial renders — must run AFTER goalsData is defined above
 renderGoals();
-ensureReviewTask();   // add "Review my priorities" to schedTasks
+ensureReviewTask();
 renderWidgetArea();
-refreshMyView();      // sync Today's One Thing + top-3 from prioritySettings
+refreshMyView();
+bootApp();
 
-// ── MESSAGING ──
-const convData={
+// Show auth overlay after DOM is fully parsed
+// (auth HTML is after </script> so we must wait for DOMContentLoaded)
+document.addEventListener('DOMContentLoaded', function(){
+  var overlay = document.getElementById('authOverlay');
+  if(overlay) overlay.style.display = 'flex';
+  showSignIn();
+});
+
+// ══════════════════════════════════════════
+// FIREBASE CONFIGURATION
+// ══════════════════════════════════════════
+
+var firebaseConfig = {
+  apiKey:            "AIzaSyD8qTdahjfeRk4zuhx_hz5AgeZXsb_oGjc",
+  authDomain:        "sphere-c1048.firebaseapp.com",
+  projectId:         "sphere-c1048",
+  storageBucket:     "sphere-c1048.firebasestorage.app",
+  messagingSenderId: "786477313402",
+  appId:             "1:786477313402:web:10eee516c09edf93527ac3",
+  measurementId:     "G-2DKTJ7P8TK"
+};
+
+var _fbApp  = null;
+var _fbAuth = null;
+var _fbDb   = null;
+var _fbUser = null;
+var _syncTimer = null;
+
+function initFirebase(){
+  try {
+    _fbApp  = firebase.initializeApp(firebaseConfig);
+    _fbAuth = firebase.auth();
+    _fbDb   = firebase.firestore();
+
+    // Handle Google redirect result (Safari returns here after redirect)
+    _fbAuth.getRedirectResult().catch(function(err){
+      if(err.code && err.code !== 'auth/no-auth-event'){
+        console.warn('[Sphere] Redirect sign-in error:', err.message);
+      }
+    });
+
+    // Listen for auth state changes
+    _fbAuth.onAuthStateChanged(function(user){
+      if(user){
+        _fbUser = user;
+        onUserSignedIn(user);
+      } else {
+        _fbUser = null;
+        onUserSignedOut();
+      }
+    });
+  } catch(e){
+    console.error('[Sphere] Firebase init failed:', e);
+  }
+}
+
+// ── AUTH STATE HANDLERS ──
+
+function onUserSignedIn(user){
+  // Hide auth overlay, show app
+  var overlay = document.getElementById('authOverlay');
+  if(overlay) overlay.style.display = 'none';
+
+  // Show feedback button
+  var fab = document.getElementById('feedbackFab');
+  if(fab) fab.style.display = 'flex';
+
+  // Update user profile with Firebase display name
+  if(user.displayName && !userProfile.name){
+    userProfile.name = user.displayName.split(' ')[0];
+  }
+  if(user.email){ userProfile.email = user.email; }
+
+  // Load user data from Firestore
+  loadFromFirestore(user.uid);
+}
+
+function onUserSignedOut(){
+  // Show auth overlay
+  showSignIn();
+  var overlay = document.getElementById('authOverlay');
+  if(overlay) overlay.style.display = 'flex';
+
+  // Hide feedback button
+  var fab = document.getElementById('feedbackFab');
+  if(fab) fab.style.display = 'none';
+}
+
+// ── SIGN IN / SIGN UP ──
+
+function showSignIn(){
+  var si = document.getElementById('authSignIn');
+  var su = document.getElementById('authSignUp');
+  var sf = document.getElementById('authForgot');
+  var sl = document.getElementById('authLoading');
+  if(si) si.style.display = 'block';
+  if(su) su.style.display = 'none';
+  if(sf) sf.style.display = 'none';
+  if(sl) sl.style.display = 'none';
+}
+
+function showSignUp(){
+  var si = document.getElementById('authSignIn');
+  var su = document.getElementById('authSignUp');
+  var sf = document.getElementById('authForgot');
+  if(si) si.style.display = 'none';
+  if(su) su.style.display = 'block';
+  if(sf) sf.style.display = 'none';
+}
+
+function showForgotPassword(){
+  var si = document.getElementById('authSignIn');
+  var sf = document.getElementById('authForgot');
+  if(si) si.style.display = 'none';
+  if(sf) sf.style.display = 'block';
+}
+
+function showAuthLoading(){
+  var si = document.getElementById('authSignIn');
+  var su = document.getElementById('authSignUp');
+  var sf = document.getElementById('authForgot');
+  var sl = document.getElementById('authLoading');
+  if(si) si.style.display = 'none';
+  if(su) su.style.display = 'none';
+  if(sf) sf.style.display = 'none';
+  if(sl) sl.style.display = 'block';
+}
+
+function showAuthError(id, msg){
+  var el = document.getElementById(id);
+  if(el){ el.textContent = msg; el.style.display = 'block'; }
+}
+
+function clearAuthErrors(){
+  ['signInError','signUpError','forgotError'].forEach(function(id){
+    var el = document.getElementById(id);
+    if(el){ el.textContent = ''; el.style.display = 'none'; }
+  });
+}
+
+function signInWithEmail(){
+  clearAuthErrors();
+  var email = (document.getElementById('signInEmail') || {}).value || '';
+  var pass  = (document.getElementById('signInPassword') || {}).value || '';
+  if(!email || !pass){ showAuthError('signInError','Please enter your email and password.'); return; }
+  showAuthLoading();
+  _fbAuth.signInWithEmailAndPassword(email, pass)
+    .catch(function(err){
+      showSignIn();
+      var msg = err.code === 'auth/user-not-found' ? 'No account found with this email.' :
+                err.code === 'auth/wrong-password'  ? 'Incorrect password.' :
+                err.code === 'auth/invalid-email'   ? 'Invalid email address.' :
+                err.message;
+      showAuthError('signInError', msg);
+    });
+}
+
+function signUpWithEmail(){
+  clearAuthErrors();
+  var name  = (document.getElementById('signUpName')     || {}).value || '';
+  var email = (document.getElementById('signUpEmail')    || {}).value || '';
+  var pass  = (document.getElementById('signUpPassword') || {}).value || '';
+  if(!name)  { showAuthError('signUpError','Please enter your name.'); return; }
+  if(!email) { showAuthError('signUpError','Please enter your email.'); return; }
+  if(pass.length < 6){ showAuthError('signUpError','Password must be at least 6 characters.'); return; }
+  showAuthLoading();
+  _fbAuth.createUserWithEmailAndPassword(email, pass)
+    .then(function(cred){
+      return cred.user.updateProfile({ displayName: name });
+    })
+    .catch(function(err){
+      showSignUp();
+      var msg = err.code === 'auth/email-already-in-use' ? 'An account with this email already exists.' :
+                err.code === 'auth/invalid-email'        ? 'Invalid email address.' :
+                err.message;
+      showAuthError('signUpError', msg);
+    });
+}
+
+function signInWithGoogle(){
+  clearAuthErrors();
+  showAuthLoading();
+  var provider = new firebase.auth.GoogleAuthProvider();
+  // Use redirect instead of popup — works correctly in Safari on iPhone
+  _fbAuth.signInWithRedirect(provider)
+    .catch(function(err){
+      showSignIn();
+      showAuthError('signInError', err.message);
+    });
+}
+
+function sendPasswordReset(){
+  clearAuthErrors();
+  var email = (document.getElementById('forgotEmail') || {}).value || '';
+  if(!email){ showAuthError('forgotError','Please enter your email.'); return; }
+  _fbAuth.sendPasswordResetEmail(email)
+    .then(function(){
+      var el = document.getElementById('authForgot');
+      if(el) el.innerHTML = '<div style="text-align:center;padding:20px 0;">' +
+        '<div style="font-size:36px;margin-bottom:12px;">📧</div>' +
+        '<div style="font-family:\'Fraunces\',serif;font-size:18px;color:var(--txt);margin-bottom:8px;">Check your email</div>' +
+        '<div style="font-size:12px;color:var(--hint);line-height:1.6;margin-bottom:20px;">We sent a password reset link to ' + email + '</div>' +
+        '<button class="auth-btn-secondary" onclick="showSignIn()">Back to sign in</button></div>';
+    })
+    .catch(function(err){ showAuthError('forgotError', err.message); });
+}
+
+function signOut(){
+  if(_fbAuth) _fbAuth.signOut();
+}
+
+// ── FIRESTORE SYNC ──
+
+function loadFromFirestore(uid){
+  if(!_fbDb) return;
+  showSyncBanner('☁️ Loading your data...');
+
+  _fbDb.collection('users').doc(uid).get()
+    .then(function(doc){
+      if(doc.exists){
+        var data = doc.data();
+        if(data.schedTasks    && data.schedTasks.length > 1)  schedTasks       = data.schedTasks;
+        if(data.goalsData     && data.goalsData.length  > 0)  goalsData        = data.goalsData;
+        if(data.prioritySettings) prioritySettings = data.prioritySettings;
+        if(data.userProfile)      userProfile      = data.userProfile;
+        if(data.appSettings)      appSettings      = data.appSettings;
+
+        // Re-render with loaded data
+        applyDarkMode();
+        applyProfile();
+        renderGoals();
+        ensureReviewTask();
+        renderWidgetArea();
+        refreshMyView();
+
+        hideSyncBanner();
+        toast('☁️ Data loaded');
+      } else {
+        // New user — save demo data to Firestore
+        saveToFirestore();
+        hideSyncBanner();
+      }
+    })
+    .catch(function(err){
+      console.warn('[Sphere] Firestore load failed:', err);
+      hideSyncBanner();
+    });
+}
+
+function saveToFirestore(){
+  if(!_fbDb || !_fbUser) return;
+  clearTimeout(_syncTimer);
+  _syncTimer = setTimeout(function(){
+    var data = {
+      schedTasks:       schedTasks,
+      goalsData:        goalsData,
+      prioritySettings: prioritySettings,
+      userProfile:      userProfile,
+      appSettings:      appSettings,
+      savedAt:          firebase.firestore.FieldValue.serverTimestamp()
+    };
+    _fbDb.collection('users').doc(_fbUser.uid).set(data)
+      .then(function(){
+        var lbl = document.getElementById('lastSavedLabel');
+        if(lbl) lbl.textContent = 'Last saved: just now ☁️';
+      })
+      .catch(function(err){ console.warn('[Sphere] Firestore save failed:', err); });
+  }, 1000); // debounce 1s
+}
+
+// Override scheduleSave to also sync to Firestore
+var _origScheduleSave = scheduleSave;
+scheduleSave = function(){
+  _origScheduleSave();
+  saveToFirestore();
+};
+
+function showSyncBanner(msg){
+  var banner = document.getElementById('syncBanner');
+  var msgEl  = document.getElementById('syncBannerMsg');
+  if(banner && msgEl){ msgEl.textContent = msg; banner.style.display = 'flex'; }
+}
+
+function hideSyncBanner(){
+  setTimeout(function(){
+    var banner = document.getElementById('syncBanner');
+    if(banner) banner.style.display = 'none';
+  }, 1500);
+}
+
+// ══════════════════════════════════════════
+// IN-APP FEEDBACK
+// ══════════════════════════════════════════
+
+var _feedbackRating = 0;
+var _feedbackTags   = [];
+var FEEDBACK_EMAIL  = 'Osborn.Joshua36@gmail.com';
+
+// Init EmailJS (free tier — 200 emails/month)
+// Sign up at emailjs.com and replace these IDs
+var EMAILJS_SERVICE  = 'service_nbeqhpb';
+var EMAILJS_TEMPLATE = ''; // not needed — using mailto fallback
+var EMAILJS_KEY      = 'L3mGqDexA5tAOQvnp';
+
+function openFeedback(){
+  _feedbackRating = 0;
+  _feedbackTags   = [];
+  document.querySelectorAll('.feedback-star').forEach(function(s){ s.classList.remove('active'); });
+  document.querySelectorAll('.feedback-tag').forEach(function(t){ t.classList.remove('active'); });
+  var txt = document.getElementById('feedbackText');
+  if(txt) txt.value = '';
+  var overlay = document.getElementById('feedbackOverlay');
+  if(overlay) overlay.style.display = 'flex';
+}
+
+function closeFeedback(){
+  var overlay = document.getElementById('feedbackOverlay');
+  if(overlay) overlay.style.display = 'none';
+}
+
+function setFeedbackStar(n){
+  _feedbackRating = n;
+  document.querySelectorAll('.feedback-star').forEach(function(s, i){
+    s.classList.toggle('active', i < n);
+  });
+}
+
+function toggleFeedbackTag(el, tag){
+  el.classList.toggle('active');
+  var idx = _feedbackTags.indexOf(tag);
+  if(idx >= 0) _feedbackTags.splice(idx,1);
+  else _feedbackTags.push(tag);
+}
+
+function submitFeedback(){
+  var text = (document.getElementById('feedbackText') || {}).value || '';
+  if(!text.trim() && _feedbackRating === 0){
+    toast('Please add a rating or message before sending');
+    return;
+  }
+
+  var btn = document.getElementById('feedbackSubmitBtn');
+  if(btn){ btn.textContent = 'Sending...'; btn.disabled = true; }
+
+  var userName  = userProfile.name || 'Anonymous';
+  var userEmail = (_fbUser && _fbUser.email) || 'Not signed in';
+  var stars     = _feedbackRating > 0 ? '⭐'.repeat(_feedbackRating) + ' (' + _feedbackRating + '/5)' : 'Not rated';
+  var tags      = _feedbackTags.length ? _feedbackTags.join(', ') : 'None';
+  var now       = new Date().toLocaleString('en-US', { dateStyle:'medium', timeStyle:'short' });
+
+  // Save to Firestore (permanent record — readable at console.firebase.google.com)
+  if(_fbDb){
+    _fbDb.collection('feedback').add({
+      uid:       _fbUser ? _fbUser.uid : 'anonymous',
+      name:      userName,
+      email:     userEmail,
+      rating:    _feedbackRating,
+      tags:      _feedbackTags,
+      message:   text,
+      timestamp: firebase.firestore.FieldValue.serverTimestamp()
+    });
+  }
+
+  // Open pre-filled email in their mail app
+  var subject = encodeURIComponent('Sphere Feedback — ' + stars + (tags !== 'None' ? ' — ' + tags : ''));
+  var body = encodeURIComponent(
+    'From: ' + userName + ' (' + userEmail + ')\n' +
+    'Rating: ' + stars + '\n' +
+    (tags !== 'None' ? 'Tags: ' + tags + '\n' : '') +
+    'Date: ' + now + '\n\n' +
+    text
+  );
+  window.open('mailto:' + FEEDBACK_EMAIL + '?subject=' + subject + '&body=' + body);
+
+  closeFeedback();
+  if(btn){ btn.textContent = 'Send feedback'; btn.disabled = false; }
+  toast('💙 Thanks for the feedback! It goes directly to the founder.');
+}
+
+// ── INIT ──
+// Boot Firebase when the page loads
+initFirebase();
+
+
+var convData={
   jamie:{name:'Jamie Lambert',av:'av1',init:'JL',status:'partner · online now'},
   mom:{name:'Mom',av:'av2',init:'MA',status:'family · online now'},
   alex:{name:'Alex Kim',av:'av4',init:'AK',status:'friend · last seen 2d ago'},
   family:{name:'Family',av:'av5',init:'👨‍👩‍👧',status:'group · 4 members'}
 };
-const replies={
+var replies={
   jamie:['Got it! 🌿','Sounds good 😊','On it!','Perfect, will do!'],
   mom:['Of course sweetheart 💙','No problem at all!','Let me know!'],
   alex:['Yes! Saturday works!','Sounds great!','Let me check...'],
   family:["We're in! 🎉",'Sunday works!','See you all then!']
 };
-let currentConv='jamie';
+var currentConv='jamie';
 function openConv(name){
   currentConv=name;
   const d=convData[name];
@@ -5025,7 +5945,7 @@ function scanExistingMessages(){
 }
 
 // ── BRAIN ──
-const journalPrompts = [
+var journalPrompts = [
   "What's one thing that went better than expected today?",
   "What's weighing on you right now, and what's one tiny step forward?",
   "Describe a moment from the past week where you felt like yourself.",
@@ -5037,7 +5957,7 @@ const journalPrompts = [
   "What pattern do you keep noticing in yourself lately?",
   "If tomorrow could be different from today, what's one thing you'd change?"
 ];
-let selectedJournalMood = '';
+var selectedJournalMood = '';
 
 function setBrainView(view){
   document.getElementById('brain-dump-section').style.display = view==='dump' ? 'block' : 'none';
@@ -5096,7 +6016,7 @@ function saveJournalEntry(){
 }
 
 // set journal today date
-const journalDateEl = document.getElementById('journalTodayDate');
+var journalDateEl = document.getElementById('journalTodayDate');
 if(journalDateEl) journalDateEl.textContent = new Date().toLocaleDateString('en-US',{weekday:'long',month:'long',day:'numeric',year:'numeric'});
 
 function clearDump(){
@@ -5585,6 +6505,7 @@ function toast(msg){
 
 function toastUndo(msg, task, prevDone){
   _lastCompleted = { task: task, prevDone: prevDone };
+  scheduleSave(); // save completion state
   var t = document.getElementById('toast');
   var m = document.getElementById('toastMsg');
   var u = document.getElementById('toastUndoBtn');
@@ -5612,68 +6533,307 @@ function undoLastComplete(){
 }
 </script>
 
-  <!-- PWA: Service Worker Registration -->
-  <script>
-    if('serviceWorker' in navigator){
-      window.addEventListener('load', function(){
-        navigator.serviceWorker.register('/sw.js')
-          .then(function(reg){ console.log('Sphere SW registered:', reg.scope); })
-          .catch(function(err){ console.log('SW registration failed:', err); });
-      });
-    }
+<!-- ONBOARDING OVERLAY -->
+<div class="onboarding-overlay" id="onboardingOverlay" style="display:none;">
+  <div class="ob-dots" id="obDots"></div>
+  <!-- Step 1: Welcome -->
+  <div class="ob-step active" id="ob-step-0">
+    <div class="ob-icon">🌐</div>
+    <div class="ob-title">Welcome to Sphere</div>
+    <div class="ob-body">Your ADHD-aware life manager. Everything you need — schedule, goals, people, thoughts — in one calm place.</div>
+    <button class="ob-btn" onclick="obNext()">Let's get started</button>
+    <button class="ob-btn-ghost" onclick="obSkip()">Skip for now</button>
+  </div>
+  <!-- Step 2: Name -->
+  <div class="ob-step" id="ob-step-1">
+    <div class="ob-icon">👋</div>
+    <div class="ob-title">What should we call you?</div>
+    <div class="ob-body">Sphere personalises your experience around you.</div>
+    <input class="ob-input" id="obNameInput" type="text" placeholder="Your first name" maxlength="30" autocomplete="given-name">
+    <button class="ob-btn" onclick="obSaveName()">Continue</button>
+  </div>
+  <!-- Step 3: My View -->
+  <div class="ob-step" id="ob-step-2">
+    <div class="ob-icon">🏠</div>
+    <div class="ob-title">Your daily command centre</div>
+    <div class="ob-body"><strong>My View</strong> shows your #1 priority, top 3 tasks, and key widgets — everything you need to start your day without overwhelm.</div>
+    <button class="ob-btn" onclick="obNext()">Got it</button>
+  </div>
+  <!-- Step 4: Schedule -->
+  <div class="ob-step" id="ob-step-3">
+    <div class="ob-icon">📅</div>
+    <div class="ob-title">A schedule that adapts</div>
+    <div class="ob-body"><strong>My Schedule</strong> shows your day as a visual timeline. Tap a task to see details. Drag to reschedule. Missed tasks auto-replan.</div>
+    <button class="ob-btn" onclick="obNext()">Next</button>
+  </div>
+  <!-- Step 5: Notifications -->
+  <div class="ob-step" id="ob-step-4">
+    <div class="ob-icon">🔔</div>
+    <div class="ob-title">Stay on track</div>
+    <div class="ob-body">Sphere can remind you when a priority task is starting, nudge you at review time, and check in at the end of the day.</div>
+    <div class="ob-perm-row" id="obNotifRow" onclick="requestNotifPermission()">
+      <span class="ob-perm-icon">🔔</span>
+      <div class="ob-perm-label">
+        <div class="ob-perm-name">Enable reminders</div>
+        <div class="ob-perm-sub">Task alerts, priority reviews, daily check-ins</div>
+      </div>
+      <span class="ob-perm-status" id="obNotifStatus">tap to enable</span>
+    </div>
+    <button class="ob-btn" onclick="obNext()">Continue</button>
+    <button class="ob-btn-ghost" onclick="obNext()">Not now</button>
+  </div>
+  <!-- Step 6: Ready -->
+  <div class="ob-step" id="ob-step-5">
+    <div class="ob-icon">🎉</div>
+    <div class="ob-title">You're all set!</div>
+    <div class="ob-body">Sphere is ready. Your data saves automatically on this device. Start by setting your priorities for today.</div>
+    <button class="ob-btn" onclick="obFinish()">Open Sphere</button>
+  </div>
+</div>
 
-    // iOS "Add to Home Screen" install prompt banner
-    (function(){
-      var isIOS = /iphone|ipad|ipod/i.test(navigator.userAgent);
-      var isStandalone = ('standalone' in navigator) && navigator.standalone;
-      var dismissed = sessionStorage.getItem('sphere-install-dismissed');
-      if(isIOS && !isStandalone && !dismissed){
-        setTimeout(function(){
-          var banner = document.createElement('div');
-          banner.id = 'pwa-install-banner';
-          banner.style.cssText = 'position:fixed;bottom:0;left:0;right:0;z-index:9999;background:#1E3245;color:#F0F6FF;padding:14px 18px 28px;display:flex;align-items:center;gap:12px;box-shadow:0 -4px 20px rgba(0,0,0,.3);font-family:"DM Sans",sans-serif;animation:slideUp .3s ease;';
-          banner.innerHTML =
-            '<img src="/icons/icon-96.png" style="width:44px;height:44px;border-radius:10px;flex-shrink:0;">' +
-            '<div style="flex:1;">' +
-              '<div style="font-size:13px;font-weight:600;margin-bottom:3px;">Install Sphere</div>' +
-              '<div style="font-size:11px;color:#8DAFC8;line-height:1.5;">Tap <strong style="color:#E8945A;">Share</strong> then <strong style="color:#E8945A;">Add to Home Screen</strong> for the full app experience</div>' +
-            '</div>' +
-            '<button onclick="document.getElementById('pwa-install-banner').remove();sessionStorage.setItem('sphere-install-dismissed','1')" style="background:transparent;border:none;color:#8DAFC8;font-size:22px;cursor:pointer;line-height:1;padding:0 4px;flex-shrink:0;">×</button>';
-          document.body.appendChild(banner);
-        }, 3000);
-      }
+<!-- SETTINGS DRAWER -->
+<div class="settings-overlay" id="settingsOverlay" style="display:none;" onclick="if(event.target===this)closeSettings()">
+  <div class="settings-drawer">
+    <div style="width:36px;height:4px;border-radius:2px;background:var(--bdr-md);margin:0 auto 16px;"></div>
+    <div class="settings-hdr">
+      <div class="settings-title">Settings</div>
+      <button onclick="closeSettings()" style="background:transparent;border:none;font-size:20px;color:var(--hint);cursor:pointer;">×</button>
+    </div>
 
-      // Android / Chrome install prompt
-      var deferredPrompt;
-      window.addEventListener('beforeinstallprompt', function(e){
-        e.preventDefault();
-        deferredPrompt = e;
-        var dismissed2 = sessionStorage.getItem('sphere-install-dismissed');
-        if(dismissed2) return;
-        setTimeout(function(){
-          var banner = document.createElement('div');
-          banner.id = 'pwa-install-banner';
-          banner.style.cssText = 'position:fixed;bottom:0;left:0;right:0;z-index:9999;background:#1E3245;color:#F0F6FF;padding:14px 18px 28px;display:flex;align-items:center;gap:12px;box-shadow:0 -4px 20px rgba(0,0,0,.3);font-family:"DM Sans",sans-serif;animation:slideUp .3s ease;';
-          banner.innerHTML =
-            '<img src="/icons/icon-96.png" style="width:44px;height:44px;border-radius:10px;flex-shrink:0;">' +
-            '<div style="flex:1;">' +
-              '<div style="font-size:13px;font-weight:600;margin-bottom:3px;">Install Sphere</div>' +
-              '<div style="font-size:11px;color:#8DAFC8;">Add to your home screen for the full experience</div>' +
-            '</div>' +
-            '<button id="pwa-install-btn" style="background:#E8945A;color:#fff;border:none;border-radius:9px;padding:8px 14px;font-size:12px;font-weight:600;cursor:pointer;font-family:'DM Sans',sans-serif;white-space:nowrap;flex-shrink:0;">Install</button>' +
-            '<button onclick="document.getElementById('pwa-install-banner').remove();sessionStorage.setItem('sphere-install-dismissed','1')" style="background:transparent;border:none;color:#8DAFC8;font-size:22px;cursor:pointer;line-height:1;padding:0 4px;flex-shrink:0;">×</button>';
-          document.body.appendChild(banner);
-          document.getElementById('pwa-install-btn').addEventListener('click', function(){
-            banner.remove();
-            deferredPrompt.prompt();
-            deferredPrompt.userChoice.then(function(r){
-              sessionStorage.setItem('sphere-install-dismissed','1');
-              deferredPrompt = null;
-            });
-          });
-        }, 3000);
-      });
-    })();
-  </script>
+    <!-- Profile -->
+    <div class="settings-section">
+      <div class="settings-section-title">Profile</div>
+      <div class="settings-row" style="gap:14px;align-items:center;">
+        <div class="settings-avatar" id="settingsAvatar">?</div>
+        <div style="flex:1;">
+          <input class="settings-name-input" id="settingsNameInput" type="text" placeholder="Your name" maxlength="30">
+          <div style="font-size:10px;color:var(--hint);margin-top:4px;">Shown in your greeting and personalisation</div>
+        </div>
+        <button onclick="saveProfileSettings()" style="background:var(--navy);color:#fff;border:none;border-radius:9px;padding:8px 14px;font-size:12px;font-weight:600;cursor:pointer;font-family:'DM Sans',sans-serif;">Save</button>
+      </div>
+    </div>
+
+    <!-- Appearance -->
+    <div class="settings-section" style="margin-top:16px;">
+      <div class="settings-section-title">Appearance</div>
+      <div class="settings-row">
+        <div class="settings-icon" style="background:var(--navy);">🌙</div>
+        <div class="settings-label">
+          <div class="settings-name">Dark mode</div>
+          <div class="settings-sub">Easier on the eyes at night</div>
+        </div>
+        <button class="settings-toggle" id="darkModeToggle" onclick="toggleDarkMode()"></button>
+      </div>
+    </div>
+
+    <!-- Notifications -->
+    <div class="settings-section" style="margin-top:16px;">
+      <div class="settings-section-title">Notifications</div>
+      <div class="settings-row">
+        <div class="settings-icon" style="background:var(--terra-l);">🔔</div>
+        <div class="settings-label">
+          <div class="settings-name">Priority reminders</div>
+          <div class="settings-sub">Alert when a top-3 task is starting</div>
+        </div>
+        <button class="settings-toggle on" id="notifPriorityToggle" onclick="toggleSettingToggle(this,'notifPriority')"></button>
+      </div>
+      <div class="settings-row">
+        <div class="settings-icon" style="background:var(--amber-l);">📋</div>
+        <div class="settings-label">
+          <div class="settings-name">Review time reminder</div>
+          <div class="settings-sub">Nudge when it's time to set priorities</div>
+        </div>
+        <button class="settings-toggle on" id="notifReviewToggle" onclick="toggleSettingToggle(this,'notifReview')"></button>
+      </div>
+      <div class="settings-row">
+        <div class="settings-icon" style="background:var(--sage-l);">🌅</div>
+        <div class="settings-label">
+          <div class="settings-name">Daily check-in</div>
+          <div class="settings-sub">End-of-day reflection prompt</div>
+        </div>
+        <button class="settings-toggle" id="notifCheckinToggle" onclick="toggleSettingToggle(this,'notifCheckin')"></button>
+      </div>
+      <div style="margin-top:10px;">
+        <button onclick="requestNotifPermission()" style="width:100%;background:var(--navy);color:#fff;border:none;border-radius:10px;padding:10px;font-size:12px;font-weight:600;cursor:pointer;font-family:'DM Sans',sans-serif;" id="notifPermBtn">Enable device notifications</button>
+        <div style="font-size:10px;color:var(--hint);margin-top:6px;text-align:center;" id="notifPermStatus">Notifications not yet enabled on this device</div>
+      </div>
+    </div>
+
+    <!-- Priority review schedule -->
+    <div class="settings-section" style="margin-top:16px;">
+      <div class="settings-section-title">Priority Review</div>
+      <div class="settings-row">
+        <div class="settings-icon" style="background:var(--plum-l);">⏰</div>
+        <div class="settings-label">
+          <div class="settings-name">Review time</div>
+          <div class="settings-sub">When the "Review my priorities" task appears</div>
+        </div>
+        <input type="time" id="settingsReviewTime" value="21:00" onchange="saveReviewTimeSetting()" style="border:1.5px solid var(--bdr-md);border-radius:8px;padding:6px 10px;font-size:12px;font-family:'DM Sans',sans-serif;color:var(--txt);background:var(--wh);outline:none;">
+      </div>
+    </div>
+
+    <!-- Data -->
+    <div class="settings-section" style="margin-top:16px;">
+      <div class="settings-section-title">Data</div>
+      <div class="settings-row">
+        <div class="settings-icon" style="background:var(--sage-l);">💾</div>
+        <div class="settings-label">
+          <div class="settings-name">Auto-save</div>
+          <div class="settings-sub" id="lastSavedLabel">Data saves automatically to this device</div>
+        </div>
+        <span style="font-size:11px;color:var(--sage-d);font-weight:600;">ON</span>
+      </div>
+      <div class="settings-row">
+        <div class="settings-icon" style="background:var(--rose-l);">🗑</div>
+        <div class="settings-label">
+          <div class="settings-name">Reset all data</div>
+          <div class="settings-sub">Clears everything and restarts onboarding</div>
+        </div>
+        <button onclick="confirmResetData()" style="background:var(--rose-l);color:var(--rose-d);border:1px solid var(--rose);border-radius:8px;padding:6px 12px;font-size:11px;font-weight:600;cursor:pointer;font-family:'DM Sans',sans-serif;">Reset</button>
+      </div>
+    </div>
+
+    <!-- About -->
+    <div class="settings-section" style="margin-top:16px;">
+      <div class="settings-section-title">About</div>
+      <div class="settings-row">
+        <div class="settings-icon" style="background:var(--sky-l);">🌐</div>
+        <div class="settings-label">
+          <div class="settings-name">Sphere</div>
+          <div class="settings-sub">Version 1.0 · Built for ADHD brains</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- MOBILE BOTTOM NAV -->
+<nav class="mobile-nav" id="mobileNav">
+  <button class="mobile-nav-btn active" id="mnav-myview" onclick="mobileNavTo('myview')">
+    <span class="mnav-icon">🏠</span>My View
+  </button>
+  <button class="mobile-nav-btn" id="mnav-schedule" onclick="mobileNavTo('schedule')">
+    <span class="mnav-icon">📅</span>Schedule
+  </button>
+  <button class="mobile-nav-btn" id="mnav-goals" onclick="mobileNavTo('goals')">
+    <span class="mnav-icon">🎯</span>Goals
+  </button>
+  <button class="mobile-nav-btn" id="mnav-circle" onclick="mobileNavTo('circle')">
+    <span class="mnav-icon">💬</span>Circle
+  </button>
+  <button class="mobile-nav-btn" id="mnav-brain" onclick="mobileNavTo('brain')">
+    <span class="mnav-icon">🧠</span>Brain
+  </button>
+</nav>
+
+
+<!-- AUTH OVERLAY -->
+<div id="authOverlay" class="auth-overlay" style="display:none;">
+  <!-- Loading state -->
+  <div id="authLoading" class="auth-card" style="display:none;">
+    <div class="auth-loading"><div class="auth-spinner"></div>Signing you in...</div>
+  </div>
+
+  <!-- Sign In -->
+  <div id="authSignIn" class="auth-card">
+    <div class="auth-logo">
+      <div class="auth-logo-ring"><div class="auth-logo-dot"></div></div>
+      <div class="auth-logo-text">Sphere</div>
+    </div>
+    <div class="auth-title">Welcome back</div>
+    <div class="auth-sub">Sign in to sync your schedule, goals, and priorities across all your devices.</div>
+    <div class="auth-error" id="signInError"></div>
+    <button class="auth-google-btn" onclick="signInWithGoogle()">
+      <svg width="18" height="18" viewBox="0 0 48 48"><path fill="#EA4335" d="M24 9.5c3.54 0 6.71 1.22 9.21 3.6l6.85-6.85C35.9 2.38 30.47 0 24 0 14.62 0 6.51 5.38 2.56 13.22l7.98 6.19C12.43 13.08 17.74 9.5 24 9.5z"/><path fill="#4285F4" d="M46.98 24.55c0-1.57-.15-3.09-.38-4.55H24v9.02h12.94c-.58 2.96-2.26 5.48-4.78 7.18l7.73 6c4.51-4.18 7.09-10.36 7.09-17.65z"/><path fill="#FBBC05" d="M10.53 28.59c-.48-1.45-.76-2.99-.76-4.59s.27-3.14.76-4.59l-7.98-6.19C.92 16.46 0 20.12 0 24c0 3.88.92 7.54 2.56 10.78l7.97-6.19z"/><path fill="#34A853" d="M24 48c6.48 0 11.93-2.13 15.89-5.81l-7.73-6c-2.18 1.48-4.97 2.31-8.16 2.31-6.26 0-11.57-3.59-13.46-8.91l-7.98 6.19C6.51 42.62 14.62 48 24 48z"/></svg>
+      Continue with Google
+    </button>
+    <div class="auth-divider">or</div>
+    <input class="auth-input" id="signInEmail" type="email" placeholder="Email address" autocomplete="email">
+    <input class="auth-input" id="signInPassword" type="password" placeholder="Password" autocomplete="current-password">
+    <button class="auth-btn" onclick="signInWithEmail()">Sign in</button>
+    <button class="auth-btn-secondary" onclick="showForgotPassword()">Forgot password?</button>
+    <div class="auth-switch">Don't have an account? <a onclick="showSignUp()">Sign up free</a></div>
+  </div>
+
+  <!-- Sign Up -->
+  <div id="authSignUp" class="auth-card" style="display:none;">
+    <div class="auth-logo">
+      <div class="auth-logo-ring"><div class="auth-logo-dot"></div></div>
+      <div class="auth-logo-text">Sphere</div>
+    </div>
+    <div class="auth-title">Create your account</div>
+    <div class="auth-sub">Your data syncs securely across all your devices. Private by design.</div>
+    <div class="auth-error" id="signUpError"></div>
+    <button class="auth-google-btn" onclick="signInWithGoogle()">
+      <svg width="18" height="18" viewBox="0 0 48 48"><path fill="#EA4335" d="M24 9.5c3.54 0 6.71 1.22 9.21 3.6l6.85-6.85C35.9 2.38 30.47 0 24 0 14.62 0 6.51 5.38 2.56 13.22l7.98 6.19C12.43 13.08 17.74 9.5 24 9.5z"/><path fill="#4285F4" d="M46.98 24.55c0-1.57-.15-3.09-.38-4.55H24v9.02h12.94c-.58 2.96-2.26 5.48-4.78 7.18l7.73 6c4.51-4.18 7.09-10.36 7.09-17.65z"/><path fill="#FBBC05" d="M10.53 28.59c-.48-1.45-.76-2.99-.76-4.59s.27-3.14.76-4.59l-7.98-6.19C.92 16.46 0 20.12 0 24c0 3.88.92 7.54 2.56 10.78l7.97-6.19z"/><path fill="#34A853" d="M24 48c6.48 0 11.93-2.13 15.89-5.81l-7.73-6c-2.18 1.48-4.97 2.31-8.16 2.31-6.26 0-11.57-3.59-13.46-8.91l-7.98 6.19C6.51 42.62 14.62 48 24 48z"/></svg>
+      Continue with Google
+    </button>
+    <div class="auth-divider">or</div>
+    <input class="auth-input" id="signUpName" type="text" placeholder="Your first name" autocomplete="given-name">
+    <input class="auth-input" id="signUpEmail" type="email" placeholder="Email address" autocomplete="email">
+    <input class="auth-input" id="signUpPassword" type="password" placeholder="Password (min 6 characters)" autocomplete="new-password">
+    <button class="auth-btn" onclick="signUpWithEmail()">Create account</button>
+    <div class="auth-switch">Already have an account? <a onclick="showSignIn()">Sign in</a></div>
+  </div>
+
+  <!-- Forgot Password -->
+  <div id="authForgot" class="auth-card" style="display:none;">
+    <div class="auth-title">Reset password</div>
+    <div class="auth-sub">Enter your email and we'll send you a reset link.</div>
+    <div class="auth-error" id="forgotError"></div>
+    <input class="auth-input" id="forgotEmail" type="email" placeholder="Email address">
+    <button class="auth-btn" onclick="sendPasswordReset()">Send reset link</button>
+    <button class="auth-btn-secondary" onclick="showSignIn()">Back to sign in</button>
+  </div>
+</div>
+
+<!-- SYNC BANNER -->
+<div class="auth-sync-banner" id="syncBanner">
+  <span id="syncBannerMsg">☁️ Saving...</span>
+</div>
+
+<!-- FEEDBACK BUTTON -->
+<button class="feedback-fab" id="feedbackFab" onclick="openFeedback()" style="display:none;">
+  💬 feedback
+</button>
+
+<!-- FEEDBACK DRAWER -->
+<div id="feedbackOverlay" class="feedback-overlay" style="display:none;" onclick="if(event.target===this)closeFeedback()">
+  <div class="feedback-drawer">
+    <div style="width:36px;height:4px;border-radius:2px;background:var(--bdr-md);margin:0 auto 16px;"></div>
+    <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:6px;">
+      <div style="font-family:'Fraunces',serif;font-size:18px;color:var(--txt);">Share feedback</div>
+      <button onclick="closeFeedback()" style="background:transparent;border:none;font-size:22px;color:var(--hint);cursor:pointer;">×</button>
+    </div>
+    <div style="font-size:11px;color:var(--hint);margin-bottom:16px;">Help shape Sphere. Your feedback goes directly to the founder.</div>
+
+    <!-- Star rating -->
+    <div style="font-size:12px;font-weight:600;color:var(--txt);margin-bottom:4px;">How's Sphere working for you?</div>
+    <div class="feedback-stars" id="feedbackStars">
+      <button class="feedback-star" onclick="setFeedbackStar(1)">⭐</button>
+      <button class="feedback-star" onclick="setFeedbackStar(2)">⭐</button>
+      <button class="feedback-star" onclick="setFeedbackStar(3)">⭐</button>
+      <button class="feedback-star" onclick="setFeedbackStar(4)">⭐</button>
+      <button class="feedback-star" onclick="setFeedbackStar(5)">⭐</button>
+    </div>
+
+    <!-- Category tags -->
+    <div style="font-size:12px;font-weight:600;color:var(--txt);margin-bottom:8px;">What's this about?</div>
+    <div style="display:flex;flex-wrap:wrap;gap:6px;margin-bottom:14px;" id="feedbackTags">
+      <button class="feedback-tag" onclick="toggleFeedbackTag(this,'Bug')">🐛 Bug</button>
+      <button class="feedback-tag" onclick="toggleFeedbackTag(this,'Feature idea')">💡 Feature idea</button>
+      <button class="feedback-tag" onclick="toggleFeedbackTag(this,'Confusing UX')">😕 Confusing UX</button>
+      <button class="feedback-tag" onclick="toggleFeedbackTag(this,'Love this')">❤️ Love this</button>
+      <button class="feedback-tag" onclick="toggleFeedbackTag(this,'Missing feature')">🔍 Missing feature</button>
+      <button class="feedback-tag" onclick="toggleFeedbackTag(this,'ADHD specific')">🧠 ADHD specific</button>
+    </div>
+
+    <!-- Text -->
+    <div style="font-size:12px;font-weight:600;color:var(--txt);margin-bottom:6px;">Tell us more</div>
+    <textarea class="feedback-textarea" id="feedbackText" placeholder="What's working? What's not? What would make Sphere a must-have for you?"></textarea>
+
+    <button onclick="submitFeedback()" id="feedbackSubmitBtn" style="width:100%;margin-top:12px;background:var(--navy);color:#fff;border:none;border-radius:12px;padding:13px;font-size:14px;font-weight:600;cursor:pointer;font-family:'DM Sans',sans-serif;">Send feedback</button>
+    <div style="font-size:10px;color:var(--hint);text-align:center;margin-top:8px;">Goes directly to the Sphere founder · anonymous unless you add your name</div>
+  </div>
+</div>
 </body>
-</html>
